@@ -75,13 +75,22 @@ WSGI_APPLICATION = 'BoilerWallTemperatureMonitor.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'GLBW',
+        'HOST': '10.60.124.143',
+        'PORT': '1433',
+        'USER': 'sa',
+        'PASSWORD': '123456',
+        'OPTIONS': {
+            'driver': 'SQL Server Native Client 10.0',
+            'MARS_Connection': True,
+
+            }
+        }
 }
+
 
 
 # Password validation
@@ -132,5 +141,6 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    # 'PAGE_SIZE': 10
 }
