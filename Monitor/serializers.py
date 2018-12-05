@@ -23,4 +23,4 @@ class SnippetSerializer(serializers.ModelSerializer):
 class OpcRealTimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Opcitemrtvalue
-        fields = ('Name','ItemID', 'Value', 'GroupName')
+        fields = ('name','itemid', 'value', 'groupname')

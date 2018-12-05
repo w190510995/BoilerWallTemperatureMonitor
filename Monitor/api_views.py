@@ -28,16 +28,32 @@ from .serializers import  OpcRealTimeSerializer
 
 
 
-@api_view(['GET', 'POST'])
+@api_view([ 'POST'])
 def opc_real_list(request,format=None):
-    if request.method == 'GET':
-        data_list = Opcitemrtvalue.objects.all()
+    condition = request.POST['condition']
+    try:
+        data_list = Opcitemrtvalue.objects.filter(groupname__exact=condition)
         serializer = OpcRealTimeSerializer(data_list, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = OpcRealTimeSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    except:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # if serializer.is_valid():
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+# @api_view(['GET', 'POST'])
+# def opc_real_list(request,format=None):
+#     if request.method == 'GET':
+#         data_list = Opcitemrtvalue.objects.all()
+#         serializer = OpcRealTimeSerializer(data_list, many=True)
+#         return Response(serializer.data)
+#
+#     elif request.method == 'POST':
+#         data_list = Opcitemrtvalue.objects.all()
+#         serializer = OpcRealTimeSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

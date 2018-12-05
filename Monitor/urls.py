@@ -9,7 +9,7 @@ from . import views
 
 urlpatterns=[
 
-    url('', views.index),
+    url(r'^index', views.index),
     # url(r'^indexPage',views.signin),
     # url(r'^signin', views.signin),
 ]

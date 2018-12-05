@@ -10,6 +10,6 @@ from . import api_views
 urlpatterns=[
 
     # url(r'^index', views.index),
-    url(r'^opcRealList/',api_views.opc_real_list)
+    url(r'^opcRealList$',api_views.opc_real_list),
 
 ]
