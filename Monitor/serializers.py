@@ -5,7 +5,7 @@ date: '2018/12/5 14:23'
 
 from django.contrib.auth.models import User
 from rest_framework import  serializers, viewsets
-from .models import Snippet,Opcitemrtvalue
+from .models import Snippet,Opcitemrtvalue,GrqMeanValue
 
 
 # Serializers define the API representation.
@@ -24,3 +24,8 @@ class OpcRealTimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Opcitemrtvalue
         fields = ('name','itemid', 'value', 'groupname')
+
+class GrqMeanValueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GrqMeanValue
+        fields = ('area','value')

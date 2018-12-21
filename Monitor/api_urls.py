@@ -11,6 +11,6 @@ urlpatterns=[
 
     # url(r'^index', views.index),
     url(r'^opcRealList$',api_views.opc_real_list),
-    url(r'^opcFilterProce$',api_views.opc_area_Procesed),
+    url(r'^getGrqMean$',api_views.get_opc_area__grq_data),
 
 ]

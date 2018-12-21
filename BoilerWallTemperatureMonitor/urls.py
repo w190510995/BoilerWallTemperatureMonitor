@@ -16,9 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include,url
+from Monitor import views
+from  Api import  views as ApiViews
+from django.conf import settings
+from django.conf.urls.static import static
+from Monitor.sched.timeTask import run_task
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('mon/', include('Monitor.urls')),
-    url('api/', include('Monitor.api_urls')),
+    url('apis/', include('Monitor.api_urls')),
+    url('api/', include('Api.urls')),
+    url(r'/', views.redirct_static), #处理静态文件
 ]
+
+
+
+# run_task()
