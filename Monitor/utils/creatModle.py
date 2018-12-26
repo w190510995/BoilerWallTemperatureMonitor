@@ -115,26 +115,27 @@ def platenSuperheaterModle51():
 
 #高温过热器45温度报警拟合模型
 def highTemperatureSuperheaterModle45():
-    z = np.polyfit(x9, y9,3)
+    z = np.polyfit(x9, y9,5)
     modul = np.poly1d(z)
     return modul
 #高温过热器51温度报警拟合模型
 def highTemperatureSuperheaterModle51():
-    z = np.polyfit(x10, y10,3)
+    z = np.polyfit(x10, y10,40)
     modul = np.poly1d(z)
     return modul
 
 
+#高温再热器温度报警拟合模型
+def highTemperatureReheaterModle():
+    z = np.polyfit(x12, y12,3)
+    modul = np.poly1d(z)
+    return modul
 #低温再热器温度报警拟合模型
 def lowTemperatureReheaterModle():
-    z = np.polyfit(x11, y11,6)
+    z = np.polyfit(x11, y11,3)
     modul = np.poly1d(z)
     return modul
-#高温过热器温度报警拟合模型
-def highTemperatureReheaterModle():
-    z = np.polyfit(x12, y12,6)
-    modul = np.poly1d(z)
-    return modul
+
 
 
 #返回模型

@@ -16,14 +16,20 @@ from BoilerWallTemperatureMonitor import EconomizerExportModle,\
 
 
 
+#省煤器出口吊挂管数据
+x1 = [0,5,10,12, 15, 20, 22,25,29.52,30] #出口压力
+y1 = [260,260,300,315,335,360,370,370,370,370]#报警温度
+title1 = '省煤器出口吊挂管 厂家提供数据'
+
+
 #顶棚出口
 x2 = [0,5,9.97,15.66,21.36,27.06,28.34,30]
 y2 = [540,540,540,525,500,475,470,470]
-title2 = '顶棚出口'
+title2 = '顶棚出口  厂家提供数据'
 #水平烟道侧包墙壁
 x3 = [0,5,9.87,15.51,21.15,26.79,28.02,29,30]
 y3 = [540,540,540,530,520,510,505,505,505]
-title3 = '水平烟道侧包墙壁'
+title3 = '水平烟道侧包墙壁  厂家提供数据'
 #后竖井包墙管38
 x4 = [0,4,8,9.87,15.51,21.15,26.79,28.02,30]
 y4 = [540,540,540,540,535,515,505,500,500]
@@ -69,10 +75,6 @@ title12 = '高温再热器出口 厂家提供数据'
 
 
 
-def dataFit(x,y,title):
-    plt.title(title)
-    plt.plot(x, y)
-    plt.show()
 
 #省煤器出口吊管报警阈值生成函数
 def economizerExportFunc(pressure):
@@ -85,7 +87,7 @@ def economizerExportFunc(pressure):
 
 
 #顶棚出口报警阈值生成函数
-def economizerExportFunc(pressure):
+def proofExportFunc(pressure):
     if pressure <= 9.97 :
         return 540
     elif pressure >=28.34:
@@ -189,33 +191,53 @@ def lowTemperatureReheaterFunc(pressure):
 
 
 
+def dataFit(x,y,title):
+    plt.title(title)
+    plt.plot(x, y)
+    plt.savefig('./images/'+title+'.png', format='png')
+    plt.show()
+
 
 
 
 def  tset():
-    dataR = np.arange(0,30,0.5)
+    dataR = x4
     list = []
     for v in dataR:
-        target = highTemperatureSuperheaterFunc45(v)#根据区域替换
+        #economizerExportFunc  省煤器出口吊管报警阈值生成函数
+        # proofExportFunc  顶棚出口报警阈值生成函数
+        # horizontalFlueSideWalltFunc  水平烟道侧包墙壁报警阈值生成函数
+        # rearShaftWallTubeModle38Func  后竖井包墙管38报警阈值生成函数
+        # rearShaftWallTubeModle51Func  后竖井包墙管51报警阈值生成函数
+        # lowTemperatureSuperheaterFunc  低温过热器报警阈值生成函数
+        # platenSuperheaterModle45Func  屏式过热器45报警阈值生成函数
+        # platenSuperheaterModle51Func  屏式过热器51报警阈值生成函数
+        # highTemperatureSuperheaterFunc45  高温过热器45报警阈值生成函数
+        # highTemperatureSuperheaterFunc51  高温过热器51报警阈值生成函数
+        # highTemperatureReheaterFunc  高温再热器报警阈值生成函数
+        # lowTemperatureReheaterFunc  低温再热器报警阈值生成函数
+        target = rearShaftWallTubeModle38Func(v)#根据区域替换
         list.append(target)
-        print('tag '+str(v)+'  ',target)
-    dataFit(dataR,list,'*')
+        print('tag>>  '+str(v)+'  ',target)
+    # dataFit(dataR,list,'高温过热器45  拟合函数')
 
-if __name__ == '__main__':
-    # 解决中文乱码问题
-    mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体 SimHei为黑体
-    mpl.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
-
-    # dataFit(x2, y2, title2)
-    # dataFit(x3, y3, title3)
-    # dataFit(x4, y4, title4)
-    # dataFit(x5, y5, title5)
-    # dataFit(x6, y6, title6)
-    # dataFit(x7, y7, title7)
-    # dataFit(x8, y8, title8)
-    dataFit(x9, y9, title9)
-    # dataFit(x10, y10, title10)
-    # dataFit(x11, y11, title11)
-    # dataFit(x12, y12, title12)
-    tset()
+#
+# if __name__ == '__main__':
+#     # 解决中文乱码问题
+#     mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体 SimHei为黑体
+#     mpl.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+#     # dataFit(x1, y1, title1)
+#     # dataFit(x2, y2, title2)
+#     # dataFit(x3, y3, title3)
+#     # dataFit(x4, y4, title4)
+#     # dataFit(x5, y5, title5)
+#     # dataFit(x6, y6, title6)
+#     # dataFit(x7, y7, title7)
+#     # dataFit(x8, y8, title8)
+#     # dataFit(x9, y9, title9)
+#     # dataFit(x10, y10, title10)
+#     # dataFit(x12, y12, title12)
+#     # dataFit(x11, y11, title11)
+#
+#     tset()
 

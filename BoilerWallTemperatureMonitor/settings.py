@@ -83,11 +83,10 @@ DATABASES = {
         'HOST': '10.60.124.143',
         'PORT': '1433',
         'USER': 'sa',
-        'PASSWORD': '123456',
+        'PASSWORD': 'sa123456',
         'OPTIONS': {
             'driver': 'SQL Server Native Client 10.0',
             'MARS_Connection': True,
-
             }
         }
 }
