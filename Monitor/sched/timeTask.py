@@ -27,7 +27,7 @@ def run_task():
         # 调度器使用DjangoJobStore()
         # scheduler.add_jobstore(DjangoJobStore(), "default")
         # 使用IntervalTrigger指定时间运行
-        scheduler.add_job(schGrqTask, 'interval',seconds=5)
+        scheduler.add_job(schGrqTask, 'interval',seconds=2)
         scheduler.start()
     except(KeyboardInterrupt,SystemExit):
         scheduler.shutdown()

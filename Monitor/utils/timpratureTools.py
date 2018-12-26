@@ -5,13 +5,20 @@ date: '2018/12/26 17:57'
 from django.core.cache  import cache
 from datetime import datetime
 from Monitor.models import TempratureAlermValue
+import time
+
 
 #name:标签名
 #value: 标签当前值
 #thresholdValuet：区域定值
 def dataProcess(name,value,thresholdValuet,area):
 
+
+
+
+
     get_value_catch = cache.get(name) #根据标签名获取redis中对应的数据
+
     if get_value_catch is None: # redis中无标签对应的数据，则新建一条数据缓存到redis
 
 
@@ -49,6 +56,8 @@ def dataProcess(name,value,thresholdValuet,area):
                 cache.set(name, get_value_catch, timeout=None)  # 更新数据到redis
 
         elif get_value_catch['status'] == 0:  #该条报警状态已结束，保存到数据库，随后删除redis中数据
+            beginTime = get_value_catch['beginDate'],
+            endTime = get_value_catch['endDate'],
 
             persistence = TempratureAlermValue(
                 name=name,
@@ -57,10 +66,15 @@ def dataProcess(name,value,thresholdValuet,area):
                 thresholdValuet= get_value_catch['thresholdValuet'],
                 beginTime= get_value_catch['beginDate'],
                 endTime= get_value_catch['endDate'],
-                # tiemDiff= get_value_catch['beginDate'] -get_value_catch['endDate']
+                # tiemDiff= beginTime.timetuple() -endTime.timetuple()
             )
 
+
             persistence.save() #保存到数据库
+
             cache.delete(name)  # 报警结束 删除缓存
+
+
+
 
 
