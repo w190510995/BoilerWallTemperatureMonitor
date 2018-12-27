@@ -5,17 +5,13 @@ date: '2018/12/26 17:57'
 from django.core.cache  import cache
 from datetime import datetime
 from Monitor.models import TempratureAlermValue
-import time
+
 
 
 #name:标签名
 #value: 标签当前值
 #thresholdValuet：区域定值
 def dataProcess(name,value,thresholdValuet,area):
-
-
-
-
 
     get_value_catch = cache.get(name) #根据标签名获取redis中对应的数据
 
@@ -71,7 +67,6 @@ def dataProcess(name,value,thresholdValuet,area):
 
 
             persistence.save() #保存到数据库
-
             cache.delete(name)  # 报警结束 删除缓存
 
 

@@ -2,24 +2,12 @@
 #Version: V 1.0
 author: 'WangSheng'
 date: '2018/12/24 13:54'
-from django.core.cache  import cache
-from datetime import  datetime
-from ..config import OPC_REAL_DATA_API,\
-    OPC_DATA_CLASSIFICATION_GRQ,OPC_DATA_CLASSIFICATION_HQ,\
-    OPC_DATA_CLASSIFICATION_OHTER,OPC_DATA_CLASSIFICATION_QQ,\
-    OPC_DATA_CLASSIFICATION_ZRQ,OPC_DATA_CLASSIFICATION_BSGR,\
-    OPC_DATA_CLASSIFICATION_DLGR
+
+
+from ..config import OPC_REAL_DATA_API
 import logging,requests
 import pandas as pd
-from Monitor.models import TempratureAlermValue
 from Monitor.utils.timpratureTools import dataProcess
-from Monitor.utils.brokenLineFuntion import\
-    economizerExportFunc,horizontalFlueSideWalltFunc \
-    ,proofExportFunc,rearShaftWallTubeModle38Func,\
-    rearShaftWallTubeModle51Func,lowTemperatureSuperheaterFunc,\
-    platenSuperheaterModle45Func,platenSuperheaterModle51Func,\
-    highTemperatureSuperheaterFunc45,highTemperatureSuperheaterFunc51,\
-    highTemperatureReheaterFunc,lowTemperatureReheaterFunc
 
 data_url = OPC_REAL_DATA_API
 
@@ -41,20 +29,44 @@ def createAlarmThreshold(value,modle):
 
 
 
-def economizerExportHandle(pressure):
+# #生成省煤器区域数据监测
+# def economizerExportHandle(pressure):
+#
+#     #生成报警定值
+#     thresholdValuet = economizerExportFunc(pressure)
+#     #获取opc数据
+#     opc_client_api_data = getUrlDataHandle(data_url,OPC_DATA_CLASSIFICATION_GRQ)
+#     pd_filter_data = opc_client_api_data[['Name','Value']]  # 获取指定字段的数据
+#     # print(pd_filter_data)
+#     for index,row in pd_filter_data.iterrows():
+#
+#         tagName = row['Name']
+#         tagValue = round(float(row['Value']),2)
+#         dataProcess(tagName,tagValue,thresholdValuet,OPC_DATA_CLASSIFICATION_GRQ)
 
-    #生成报警定值
-    thresholdValuet = economizerExportFunc(pressure)
 
-    #获取opc数据
-    opc_client_api_data = getUrlDataHandle(data_url,OPC_DATA_CLASSIFICATION_GRQ)
-    pd_filter_data = opc_client_api_data[['Name','Value']]  # 获取指定字段的数据
+
+#pressure：所处理区域的压力
+#area：所处理区域的报警值生成函数
+#opcAreaClassification: 区域分类名称
+def temperatureMonitorHandle(pressure,areaFunc,opcAreaClassification):
+
+    # 生成报警定值
+    thresholdValuet = areaFunc(pressure)
+
+    # 获取opc数据
+    opc_client_api_data = getUrlDataHandle(data_url, opcAreaClassification)
+    pd_filter_data = opc_client_api_data[['Name', 'Value']]  # 获取指定字段的数据
+
     # print(pd_filter_data)
-    for index,row in pd_filter_data.iterrows():
-
+    for index, row in pd_filter_data.iterrows():
         tagName = row['Name']
-        tagValue = round(float(row['Value']),2)
-        dataProcess(tagName,tagValue,thresholdValuet,OPC_DATA_CLASSIFICATION_GRQ)
+        tagValue = round(float(row['Value']), 2)
+        dataProcess(tagName, tagValue, thresholdValuet, opcAreaClassification)
+
+
+
+
 
 
 

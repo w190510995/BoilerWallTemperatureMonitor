@@ -65,7 +65,7 @@ title12 = '高温再热器出口 厂家提供数据'
 
 
 
-#生成过热器出口温度报警拟合模型
+#生成省煤器出口温度报警拟合模型
 def economizerExportModle():
     z = np.polyfit(x1, y1, 14)
     modul = np.poly1d(z)
