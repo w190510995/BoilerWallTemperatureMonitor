@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c^7jw^6txi5l)bjftk4$3&+n+*iuar9nm$o2i4ia$fcb(xkcj&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*',]
 
@@ -85,7 +85,7 @@ DATABASES = {
         'USER': 'sa',
         'PASSWORD': 'sa123456',
         'OPTIONS': {
-            'driver': 'SQL Server Native Client 10.0',
+            'driver': 'SQL Server Native Client 11.0',
             'MARS_Connection': True,
             }
         }
