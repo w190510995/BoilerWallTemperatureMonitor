@@ -3,11 +3,16 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from Monitor.sched.TempratureHandle import temperatureMonitorHandle
 
 
-from ..config import   OPC_DATA_CLASSIFICATION_GRQ,SCHEDULER_INTERVAL\
-    ,OPC_DATA_CLASSIFICATION_HQ,\
-    OPC_DATA_CLASSIFICATION_OHTER,OPC_DATA_CLASSIFICATION_QQ,\
-    OPC_DATA_CLASSIFICATION_ZRQ,OPC_DATA_CLASSIFICATION_BSGR,\
-    OPC_DATA_CLASSIFICATION_DLGR
+from ..config import   SCHEDULER_INTERVAL,\
+    UpperWaterWall_Area_2,HorizontalFlueSideWaterWall_Area_2,\
+    ProofExport_Area_2,HorizontalFlueSideWall_Area_2,\
+    RearShaftWallTube38_Area_2,RearShaftWallTube51_Area_2, \
+    LowTemperatureSuperheater_Area_2,PlatenSuperheater45_Area_2, \
+    PlatenSuperheater51_Area_2,HighTemperatureSuperheater45_Area_2, \
+    HighTemperatureSuperheater51_Area_2,HighTemperatureReheater_Area_2,\
+    LowTemperatureReheater_Area_2
+
+
 from Monitor.utils.brokenLineFuntion import\
     economizerExportFunc,proofExportFunc\
     ,horizontalFlueSideWalltFunc \
@@ -25,30 +30,33 @@ from Monitor.utils.brokenLineFuntion import\
 
 #定时工作
 def schGrqTask():
+
     #省煤器区域温度数据监控
-    temperatureMonitorHandle(15,economizerExportFunc,OPC_DATA_CLASSIFICATION_GRQ)
+    # temperatureMonitorHandle(15,economizerExportFunc,OPC_DATA_CLASSIFICATION_GRQ)
     # 顶棚区域温度数据监控
-    temperatureMonitorHandle(15, proofExportFunc, OPC_DATA_CLASSIFICATION_HQ)
+    temperatureMonitorHandle(25, proofExportFunc, ProofExport_Area_2)
     # 水平烟道侧包墙区域温度数据监控
-    temperatureMonitorHandle(15, horizontalFlueSideWalltFunc, OPC_DATA_CLASSIFICATION_OHTER)
+    temperatureMonitorHandle(20, horizontalFlueSideWalltFunc, HorizontalFlueSideWall_Area_2)
     # 后竖井包墙管38区域温度数据监控
-    temperatureMonitorHandle(15, rearShaftWallTubeModle38Func, OPC_DATA_CLASSIFICATION_GRQ)
+    temperatureMonitorHandle(23, rearShaftWallTubeModle38Func, RearShaftWallTube38_Area_2)
     # 后竖井包墙管51区域温度数据监控
-    temperatureMonitorHandle(15, rearShaftWallTubeModle51Func, OPC_DATA_CLASSIFICATION_ZRQ)
+    temperatureMonitorHandle(23, rearShaftWallTubeModle51Func, RearShaftWallTube51_Area_2)
     # 低温过热器区域温度数据监控
-    temperatureMonitorHandle(15, lowTemperatureSuperheaterFunc, OPC_DATA_CLASSIFICATION_QQ)
+    temperatureMonitorHandle(16.5, lowTemperatureSuperheaterFunc, LowTemperatureSuperheater_Area_2)
     # 屏式过热器45域温度数据监控
-    temperatureMonitorHandle(15, platenSuperheaterModle45Func, OPC_DATA_CLASSIFICATION_BSGR)
+    temperatureMonitorHandle(20, platenSuperheaterModle45Func, PlatenSuperheater45_Area_2)
     # 屏式过热器51区域温度数据监控
-    temperatureMonitorHandle(15, platenSuperheaterModle51Func, OPC_DATA_CLASSIFICATION_GRQ)
+    temperatureMonitorHandle(21, platenSuperheaterModle51Func, PlatenSuperheater51_Area_2)
     # 高温过热器45出口区域温度数据监控
-    temperatureMonitorHandle(15, highTemperatureSuperheaterFunc45, OPC_DATA_CLASSIFICATION_QQ)
+    temperatureMonitorHandle(19, highTemperatureSuperheaterFunc45, HighTemperatureSuperheater45_Area_2)
     # 高温过热器51出口区域温度数据监控
-    temperatureMonitorHandle(15, highTemperatureSuperheaterFunc51, OPC_DATA_CLASSIFICATION_QQ)
-    # 低温再热器区域温度数据监控
-    temperatureMonitorHandle(15, lowTemperatureReheaterFunc, OPC_DATA_CLASSIFICATION_DLGR)
+    temperatureMonitorHandle(19, highTemperatureSuperheaterFunc51, HighTemperatureSuperheater51_Area_2)
     # 高温再热器区域温度数据监控
-    temperatureMonitorHandle(15, highTemperatureReheaterFunc, OPC_DATA_CLASSIFICATION_OHTER)
+    temperatureMonitorHandle(4.3, highTemperatureReheaterFunc, HighTemperatureReheater_Area_2)
+    # 低温再热器区域温度数据监控
+    temperatureMonitorHandle(4.3, lowTemperatureReheaterFunc, LowTemperatureReheater_Area_2)
+
+
 
 
 

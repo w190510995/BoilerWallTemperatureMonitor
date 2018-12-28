@@ -52,8 +52,9 @@ def dataProcess(name,value,thresholdValuet,area):
                 cache.set(name, get_value_catch, timeout=None)  # 更新数据到redis
 
         elif get_value_catch['status'] == 0:  #该条报警状态已结束，保存到数据库，随后删除redis中数据
-            beginTime = get_value_catch['beginDate'],
-            endTime = get_value_catch['endDate'],
+
+            beginTime1 = get_value_catch['beginDate'],
+            endTime1 = get_value_catch['endDate'],
 
             persistence = TempratureAlermValue(
                 name=name,
@@ -62,12 +63,11 @@ def dataProcess(name,value,thresholdValuet,area):
                 thresholdValuet= get_value_catch['thresholdValuet'],
                 beginTime= get_value_catch['beginDate'],
                 endTime= get_value_catch['endDate'],
-                # tiemDiff= beginTime.timetuple() -endTime.timetuple()
+                tiemDiff= (endTime1[0]-beginTime1[0]).seconds
             )
-
-
             persistence.save() #保存到数据库
             cache.delete(name)  # 报警结束 删除缓存
+
 
 
 
