@@ -12,7 +12,8 @@ urlpatterns=[
 
     url(r'^index', views.index),
     url(r'^getGrq', views.get_grq_mean_value),
-    # url(r'^indexPage',views.signin),
+    url(r'^postClassic', views.persisteOpreation),
+    url(r'^getClassic',views.getOpreation),
     # url(r'^signin', views.signin),
 ]
 

@@ -6,7 +6,7 @@
       <synchronize>true</synchronize>
       <remarks>采样点服务器</remarks>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://10.60.124.143:1433;database=GLBW</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://localhost:1433;database=GLBW</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
