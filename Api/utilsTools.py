@@ -9,4 +9,4 @@ def SecondsToHMS(seconds):
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
 
-    return  str(h)+'时'+str(m)+'分'+str(s)+'秒'
+    return  str(h)+' 时 '+str(m)+' 分 '+str(s)+' 秒'
