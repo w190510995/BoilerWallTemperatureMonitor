@@ -52,7 +52,7 @@ def createAlarmThreshold(value,modle):
 def temperatureMonitorHandle(pressure,areaFunc,opcAreaClassification):
 
     # 生成报警定值
-    thresholdValuet = areaFunc(pressure)
+    thresholdValuet = round(areaFunc(pressure),2)
 
     # 获取opc数据
     opc_client_api_data = getUrlDataHandle(data_url, opcAreaClassification)

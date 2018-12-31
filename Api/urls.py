@@ -14,6 +14,7 @@ urlpatterns=[
     url(r'^getGrq', views.get_grq_mean_value),
     url(r'^postClassic', views.persisteOpreation),
     url(r'^getClassic',views.getOpreation),
+    url(r'^getRealAlerm',views.geteRaalAlarmData),
     # url(r'^signin', views.signin),
 ]
 
