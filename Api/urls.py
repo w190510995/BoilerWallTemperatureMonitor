@@ -15,6 +15,7 @@ urlpatterns=[
     url(r'^postClassic', views.persisteOpreation),
     url(r'^getClassic',views.getOpreation),
     url(r'^getRealAlerm',views.geteRaalAlarmData),
+    url(r'^getHistoryData',views.getHistoryDatae),
     # url(r'^signin', views.signin),
 ]
 

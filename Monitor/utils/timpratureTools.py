@@ -7,7 +7,6 @@ from datetime import datetime
 from Monitor.models import TempratureAlermValue
 
 
-
 #name:标签名
 #value: 标签当前值
 #thresholdValuet：区域定值
