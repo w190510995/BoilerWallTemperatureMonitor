@@ -5,7 +5,7 @@ date: '2018/12/26 17:57'
 from django.core.cache  import cache
 from datetime import datetime
 from Monitor.models import TempratureAlermValue
-
+from Api import utilsTools
 
 #name:标签名
 #value: 标签当前值
@@ -58,6 +58,7 @@ def dataProcess(name,value,thresholdValuet,area):
             persistence = TempratureAlermValue(
                 name=name,
                 area=get_value_catch['area'],
+                classic= utilsTools.OPREATION_CLASSIC,
                 maxValue= get_value_catch['maxValue'],
                 thresholdValuet= get_value_catch['thresholdValuet'],
                 beginTime= get_value_catch['beginDate'],

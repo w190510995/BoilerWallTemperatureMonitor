@@ -16,6 +16,7 @@ urlpatterns=[
     url(r'^getClassic',views.getOpreation),
     url(r'^getRealAlerm',views.geteRaalAlarmData),
     url(r'^getHistoryData',views.getHistoryDatae),
+    url(r'^getAssessData',views.getOpreationAseete),
     # url(r'^signin', views.signin),
 ]
 
