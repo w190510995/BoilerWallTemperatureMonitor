@@ -20,6 +20,8 @@ urlpatterns=[
     # url(r'^signin', views.signin),
     url(r'^users',views.resUsers),
     url(r'^currentUser',views.resCurentUser),
+    url(r'^curentCunter',views.getCurentCunter), #当前报警条数
+    url(r'^monthsCunter',views.getMonthsCunter), #当前报警条数
 ]
 
 catchTe();
