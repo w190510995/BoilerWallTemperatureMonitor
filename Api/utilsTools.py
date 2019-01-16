@@ -3,11 +3,7 @@
 author: 'WangSheng'
 date: '2018/12/31 22:41'
 import datetime,calendar
-from Monitor import models
 
-
-#
-OPREATION_CLASSIC = models.OpreationCate.objects.get(id=1).classic
 
 #将输入的秒，转为时分秒
 def SecondsToHMS(seconds):

@@ -6,7 +6,7 @@ from django.core.cache  import cache
 from datetime import datetime
 from Monitor.models import TempratureAlermValue
 from Api import utilsTools
-
+from BoilerWallTemperatureMonitor import urls as boilerUrls
 #name:标签名
 #value: 标签当前值
 #thresholdValuet：区域定值
@@ -58,7 +58,7 @@ def dataProcess(name,value,thresholdValuet,area):
             persistence = TempratureAlermValue(
                 name=name,
                 area=get_value_catch['area'],
-                classic= utilsTools.OPREATION_CLASSIC,
+                classic= boilerUrls.OPREATION_CLASSIC,
                 maxValue= get_value_catch['maxValue'],
                 thresholdValuet= get_value_catch['thresholdValuet'],
                 beginTime= get_value_catch['beginDate'],
