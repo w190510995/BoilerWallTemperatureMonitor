@@ -25,7 +25,7 @@ urlpatterns = [
     url('mon/', include('Monitor.urls')),
     url('apis/', include('Monitor.api_urls')),
     url('api/', include('Api.urls')),
-    url('/', views.redirct_static), #处理静态文件
+    url('/$', views.redirct_static), #处理静态文件
 ]
 
 

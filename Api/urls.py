@@ -18,6 +18,8 @@ urlpatterns=[
     url(r'^getHistoryData',views.getHistoryDatae),
     url(r'^getAssessData',views.getOpreationAseete),
     # url(r'^signin', views.signin),
+    url(r'^users',views.resUsers),
+    url(r'^currentUser',views.resCurentUser),
 ]
 
 catchTe();
