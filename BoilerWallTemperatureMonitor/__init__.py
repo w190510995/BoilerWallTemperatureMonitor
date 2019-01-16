@@ -1,6 +1,7 @@
 from  Monitor.utils.creatModle import  intfunc1
 
 
+
 #初始化模型
 listModle = intfunc1()
 
@@ -16,6 +17,9 @@ HighTemperatureSuperheaterModle45 = listModle[8]
 HighTemperatureSuperheaterModle51 = listModle[9]
 LowTemperatureReheaterModle = listModle[10]
 HighTemperatureReheaterModle = listModle[11]
+
+
+
 
 
 

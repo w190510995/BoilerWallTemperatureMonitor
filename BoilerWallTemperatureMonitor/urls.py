@@ -21,7 +21,6 @@ from Monitor import views
 from Monitor.sched.timeTask import run_task
 from Monitor import models
 
-OPREATION_CLASSIC = models.OpreationCate.objects.get(id=1).classic
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,3 +32,5 @@ urlpatterns = [
 
 run_task()
 
+
+OPREATION_CLASSIC = models.OpreationCate.objects.get(id=1).classic
