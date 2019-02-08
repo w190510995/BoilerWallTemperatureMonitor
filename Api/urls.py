@@ -22,6 +22,7 @@ urlpatterns=[
     url(r'^currentUser',views.resCurentUser),
     url(r'^curentCunter',views.getCurentCunter), #当前报警条数
     url(r'^monthsCunter',views.getMonthsCunter), #当前报警条数
+    url(r'^allCunter',views.getAllClassicCunter), #当月报警条数统计
 ]
 
 catchTe();
